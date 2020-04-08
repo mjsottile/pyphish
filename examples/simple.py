@@ -1,8 +1,8 @@
-import api
+import phishnet.api as phish
 
 # assumes the database has already been cached
 db_file = "phishdb.pickle"
-db = api.load_database(db_file)
+db = phish.load_database(db_file)
 
 # simple query: count all shows with at least two sets, and track all
 # that have less set 1 songs than set 2 songs
