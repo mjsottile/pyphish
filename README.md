@@ -11,6 +11,18 @@ important.  Note that caching the data has issues:
 - You shouldn't share the cached data or make it available to others to
   avoid running afoul of the phish.net API usage rules.
 
+# Usage
+
+You need the requests package and pandas.  I recommend using Anaconda Python
+which includes these.  Get an API key and set the PHISHNET_APIKEY environment
+variable:
+
+```
+$ export PHISHNET_APIKEY='thekeyhere'
+```
+
+
+
 # Design
 
 The goal of the library is to take data available on phish.net and
