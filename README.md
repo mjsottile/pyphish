@@ -2,10 +2,8 @@
 
 This is some Python code that I wrote for accessing the phish.net
 API.  It implements client-side caching so that repeated data accesses
-don't hammer the server excessively, and also makes it easier to work
-offline.  Given that I tend to work on hobby projects like this on
-airplanes and on travel with spotty internet, caching offline was
-important.  Note that caching the data has issues:
+don't hammer the server excessively, and also makes it easier and faster to work
+offline.  Note that caching the data has issues:
 
 - Your cache may go silently stale if the server data is updated.
 - You shouldn't share the cached data or make it available to others to
