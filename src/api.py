@@ -45,10 +45,11 @@ methods for querying and updating the contents.
         return show_id in self.shows
 
     def register_song(self, songname):
+        """ Assign a song an identifier. """
         if songname in self.songs:
             return self.songs[songname].id
         else:
-            print('registering '+songname)
+            # print('registering '+songname)
             s = Song(songname, self.song_id_counter)
             self.song_id_counter = self.song_id_counter + 1
             self.songs[songname] = s
@@ -56,6 +57,7 @@ methods for querying and updating the contents.
             return s.id
 
     def print_db(self):
+        """ Print the whole database - useful only for debugging. """
         for show_id in self.shows:
             show = self.shows[show_id]
             print("SHOW: "+show.date+" - "+show.location+" ("+show.tour+")")
@@ -64,12 +66,13 @@ methods for querying and updating the contents.
         for song_id in self.songs_by_id:
             print("SONG: "+self.songs_by_id[song_id].name+" ("+str(song_id)+")")
 
-##
+class APIKeyUndefined(Exception):
+    pass
 
 def get_apikey():
     if os.environ.get('PHISHNET_APIKEY') is None:
         print("ERROR: Set PHISHNET_APIKEY to your Phish.net API key.")
-        return None
+        raise APIKeyUndefined
     else:
         return os.environ.get('PHISHNET_APIKEY')
 
@@ -82,6 +85,7 @@ def get_show_ids(year):
     return "https://api.phish.net/v3/shows/query?apikey="+apikey+"&year="+str(year)+"&order=DESC"
 
 class SetlistHTMLParser(HTMLParser):
+    """ Derived class from HTMLParser to handle phish.net setlist HTML. """
     def __init__(self):
         super().__init__()
         self.inside_tag = None
@@ -116,13 +120,14 @@ The result is a list of (showID, tour name) pairs.
     return shows
 
 def parse_show(db, show):
+    """ Parse a show by ID.  If it is known in the database, return
+immediately.  Otherwise issue an API request to get the show, parse it,
+and add it to the database object.
+"""
     (showid, tourname) = show
 
     if showid in db.shows:
-        print('show already known')
         return
-
-    print("getting: "+str(show))
 
     resp = (requests.get(get_show_string(showid)).json())['response']
     if resp['count'] == 1:
@@ -142,6 +147,7 @@ def parse_show(db, show):
             s.add_set(setname, setlist)
         db.add_show(s)
     else:
+        print("Unexpected response:")
         print(resp)
 
 ########################################################################
