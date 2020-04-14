@@ -98,9 +98,4 @@ extensibility and interoperability with other tools is not a requirement.
 
 # Packaging (or lack thereof)
 
-I have also chosen to not make it available as a Python package and have
-minimal dependencies on other packages.  After doing 20+ years of Python,
-package and environment managers have more often led to headaches in
-the form of a combination of dependency hell, bitrot and unmaintained
-packages.  I prefer to not contribute to the problem.
-
+I don't use packages if I can avoid it.  If someone else wants to package the bits up, feel free to contribute.
