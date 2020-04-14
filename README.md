@@ -96,6 +96,12 @@ the goal was simplicity and avoidance of dependencies.  Given that the
 serialized database is intended solely to act as an opaque cache,
 extensibility and interoperability with other tools is not a requirement.
 
+### Why not a database?
+
+I'd do SQLite since it's thin and trivial to install, and would support flexible queries.  
+For the purposes that this was originally created for, I went the route of least effort.  
+If enough people ask, I can map it to a proper SQLite DB for caching instead of piclking.
+
 # Packaging (or lack thereof)
 
 I don't use packages if I can avoid it.  If someone else wants to package the bits up, feel free to contribute.
