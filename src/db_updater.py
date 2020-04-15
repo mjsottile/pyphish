@@ -2,11 +2,11 @@
 Update the database to download any missing shows over all time from
 1980 to 2030.  This will stop being correct in around 10 years...
 """
-import phishnet.api
+import api
 
 db_file = "phishdb.pickle"
 
-db = phishnet.api.load_database(db_file)
+db = api.load_database(db_file)
 
 for year in range(1980,2030):
     #print(year)
