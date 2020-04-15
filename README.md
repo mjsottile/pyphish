@@ -24,20 +24,21 @@ make sure the code from this API can be found.  Assuming you are in the root
 of the repository, just run:
 
 ```
-$ export PYTHONPATH=$PYTHONPATH:`pwd`/src
+$ cd src/
+$ export PYTHONPATH=$PYTHONPATH:`pwd`
 ```
 
 Now, run the database updater:
 
 ```
-$ python3 src/db_updater.py
+$ python3 db_updater.py
 ```
 
 You should get a pickled database that contains the cache.  You can then
 run the examples:
 
 ```
-$ python3 examples/simple.py
+$ python3 simple.py
 ```
 
 # Design
